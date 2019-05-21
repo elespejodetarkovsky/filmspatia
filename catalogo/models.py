@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-
+#esto lo modifiqué
 class Genero(models.Model):
     """
     Generará el o los generos del film  (p. ej. ciencia ficción, poesía, etc.).

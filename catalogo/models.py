@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-#esto lo modifiqué
+
 class Genero(models.Model):
     """
     Generará el o los generos del film  (p. ej. ciencia ficción, poesía, etc.).
@@ -24,14 +24,20 @@ class Film(models.Model):
 
     title = models.CharField(max_length=200)
 
-    director = models.ForeignKey(Director, on_delete=models.SET_NULL, null=True)
+    director = models.ForeignKey('Director', on_delete=models.SET_NULL, null=True)
     # ForeignKey, ya que una película tiene un solo director, pero el mismo director puede haber dirigido muchas pelis.
     # 'Director' es un string, en vez de un objeto, porque la clase Author aún no ha sido declarada.
 
     resumen = models.TextField(max_length=1000, help_text="Ingrese una breve descripción del libro")
 
-    genero = models.ManyToManyField(Genero, help_text="Select a genre for this book")
+    genero = models.ManyToManyField(Genero, help_text="Seleccione el género de la película")
     # ManyToManyField, porque un género puede contener muchos films y un film puede cubrir varios géneros.
+    
+    lengua = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
+    
+    pais = models.CharField(max_length=200)
+    
+    cartel = models.FileField #path de la imagen
     
     def __str__(self):
         """
@@ -46,6 +52,13 @@ class Film(models.Model):
         """
         return reverse('film-detail', args=[str(self.id)])
     
+    def display_genero(self):
+        """
+        Crea un string para mostrar en el admin
+        """
+        return ', '.join([ Genero.name for Genero in self.genero.all()[:3] ])
+#     
+    display_genero.short_description = 'genero'
     
     
 import uuid # Requerida para las instancias de películas únicas
@@ -56,7 +69,7 @@ class FilmInstance(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="ID único para este film particular en todo el catálogo")
     film = models.ForeignKey(Film, on_delete=models.SET_NULL, null=True) 
-    usuario = models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True)
+    usuario = models.ForeignKey('Usuario', on_delete=models.SET_NULL, null=True)
     fechaPedido = models.DateField(null=True, blank=True)
 
 #     LOAN_STATUS = (
@@ -102,7 +115,7 @@ class Director(Persona):
     """
     Modelo que representa un director
     """
-    date_of_death = models.DateField('Died', null=True, blank=True)
+    date_of_death = models.DateField('Año muerte', null=True, blank=True)
     
 class Usuario(Persona):
     """
@@ -110,6 +123,17 @@ class Usuario(Persona):
     """
     tel = models.CharField(max_length=100)
     direccion = models.CharField(max_length=100)
+    
+    
+
+class Language(models.Model):
+    """Este modelo representa los lenguajes (e.g. English, French, Japanese, etc.)"""
+    name = models.CharField(max_length=200,
+                            help_text="Ingrese el lenguaje correspondiente (principal)")
+
+    def __str__(self):
+        """String for representing the Model object (in Admin site etc.)"""
+        return self.name
     
 
     

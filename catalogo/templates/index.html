@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Películas y demás yerbas...</h1>
+
+  <p>Bienvenido <em>Filmpatia</em>, Una pequeña aplicación Django</p>
+
+<h2>Dynamic content</h2>
+
+  <p>El catálogo cuenta con la siguiente cuenta actualmente:</p>
+  <ul>
+    <li><strong>Films:</strong> {{ num_films }}</li>
+    <li><strong>Copies:</strong> {{ num_instances }}</li>
+    <li><strong>Directores:</strong> {{ num_directores }}</li>
+  </ul>
+
+{% endblock %}

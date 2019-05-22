@@ -37,7 +37,11 @@ class Film(models.Model):
     
     pais = models.CharField(max_length=200)
     
-    cartel = models.FileField #path de la imagen
+    cartel_img = models.ImageField(upload_to="ImgFilm")
+    
+    linkImg = models.URLField(null= True, blank = True)
+    
+    print(cartel_img, "  ", linkImg)
     
     def __str__(self):
         """
@@ -116,6 +120,7 @@ class Director(Persona):
     Modelo que representa un director
     """
     date_of_death = models.DateField('Año muerte', null=True, blank=True)
+    image = models.ImageField(upload_to="ImgDirectores")
     
 class Usuario(Persona):
     """
@@ -123,7 +128,7 @@ class Usuario(Persona):
     """
     tel = models.CharField(max_length=100)
     direccion = models.CharField(max_length=100)
-    
+    image = models.ImageField(upload_to="ImgUsuarios")
     
 
 class Language(models.Model):

@@ -4,7 +4,12 @@
   <h1>Title: {{ film.title }}</h1>
 
   <p><strong>Director:</strong> <a href="">{{ film.director }}</a></p> <!-- author detail link not yet defined -->
-  <p><strong>Lenguaje:</strong> {{ film.lengua }}</p>  
+  <p><strong>Lenguaje:</strong> {{ film.lengua }}</p>
+  <p><strong>Lenguaje:</strong> {{ film.lengua }}</p>
+  <p><strong>Lenguaje:</strong> {{ film.cartel_img.url }}</p>
+            <div class="col-lg-3 col-md-4 offset-lg-1">
+                <img class="img-fluid" src="{{film.cartel_img.url}}" alt="">
+            </div>
   <p><strong>Genero:</strong> {% for genero in film.genero.all %} {{ genero }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>  
 
 <!--   <div style="margin-left:20px;margin-top:20px"> -->

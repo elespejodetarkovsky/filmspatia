@@ -31,8 +31,8 @@ class FilmListView(generic.ListView):
 class FilmDetailView(generic.DetailView):
     model = Film
     
-class DirectoresListView(generic.ListView):
-    model = Director
-
-class DirectoresDetail(generic.detail):
-    model = Director
+# class DirectoresListView(generic.ListView):
+#     model = Director
+# 
+# class DirectoresDetail(generic.detail):
+#     model = Director

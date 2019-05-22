@@ -22,3 +22,17 @@ def index(request):
         'index.html',
         context={'num_films':num_films,'num_instances':num_instances,'num_directores':num_directores},
     )
+    
+from django.views import generic
+
+class FilmListView(generic.ListView):
+    model = Film
+    
+class FilmDetailView(generic.DetailView):
+    model = Film
+    
+class DirectoresListView(generic.ListView):
+    model = Director
+
+class DirectoresDetail(generic.detail):
+    model = Director

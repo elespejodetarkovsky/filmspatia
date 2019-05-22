@@ -17,6 +17,6 @@
         
     <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python 3.7</pydev_property>
         
-    <pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">virtualPython37</pydev_property>
+    <pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">pythonVirtualEnv</pydev_property>
     
 </pydev_project>

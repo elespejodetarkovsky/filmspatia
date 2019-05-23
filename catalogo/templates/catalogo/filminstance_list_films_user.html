@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Films seleccionadas por {{user}}</h1>
+
+    {% if filminstance_list %}
+    <ul>
+
+      {% for film in filminstance_list %} 
+      <li>
+        <a href="{% url 'film-detail' film.film.pk %}">{{film.film.title}}</a>       
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>Estas son sus películas favoritas</p>
+    {% endif %}       
+{% endblock %}

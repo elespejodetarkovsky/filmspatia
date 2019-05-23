@@ -33,7 +33,6 @@ def index(request):
 from django.views import generic
 
 class FilmListView(generic.ListView):
-    print("Hola Lista director")
     model = Film
     
 class FilmDetailView(generic.DetailView):
@@ -41,9 +40,22 @@ class FilmDetailView(generic.DetailView):
     
 class DirectorListView(generic.ListView):
     model = Director
-    print("Hola Lista director")
     
 class DirectorDetailView(generic.DetailView):
     model = Director
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class prestamosByUserListView(LoginRequiredMixin,generic.ListView):
+    """
+    Generic class-based view listing books on loan to current user. 
+    """
+    print("Usuario registrado")
+    model = FilmInstance
+    template_name ='catalogo/filminstance_list_films_user.html'
+    paginate_by = 10
     
-    print("Hola detalle director")
+    def get_queryset(self):
+        return FilmInstance.objects.filter(prestado_a=self.request.user)
+    
+    

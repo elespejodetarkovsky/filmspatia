@@ -17,7 +17,7 @@ class GeneroAdmin(admin.ModelAdmin):
 
 @admin.register(FilmInstance)
 class FilmInstanceAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('film', 'prestado_a', 'id')
 
 @admin.register(Usuario)
 class UsuarioAdmin(admin.ModelAdmin):

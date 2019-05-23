@@ -63,6 +63,9 @@ class Film(models.Model):
     
     
 import uuid # Requerida para las instancias de películas únicas
+from django.contrib.auth.models import User
+from datetime import date
+
 
 class FilmInstance(models.Model):
     """
@@ -70,9 +73,9 @@ class FilmInstance(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="ID único para este film particular en todo el catálogo")
     film = models.ForeignKey(Film, on_delete=models.SET_NULL, null=True) 
-    usuario = models.ForeignKey('Usuario', on_delete=models.SET_NULL, null=True)
+    #usuario = models.ForeignKey('Usuario', on_delete=models.SET_NULL, null=True)
     fechaPedido = models.DateField(null=True, blank=True)
-
+    prestado_a = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 #     LOAN_STATUS = (
 #         ('m', 'Maintenance'),
 #         ('o', 'On loan'),
@@ -82,15 +85,21 @@ class FilmInstance(models.Model):
 
     #status = models.CharField(max_length=1, choices=LOAN_STATUS, blank=True, default='m', help_text='Disponibilidad del libro')
 
+#     @property
+#     def is_overdue(self):
+#         if self.due_back and date.today() > self.due_back:
+#             return True
+#         return False
+    
     class Meta:
-        ordering = ["usuario"]
+        ordering = ["prestado_a"]
         
 
     def __str__(self):
         """
         String para representar el Objeto del Modelo
         """
-        return '%s (%s)' % (self.id,self.book.title)
+        return '%s (%s)' % (self.id,self.film.title)
     
     
 class Persona(models.Model):

@@ -16,11 +16,18 @@ def index(request):
     #num_instances_available=BookInstance.objects.filter(status__exact='a').count()
     num_directores = Director.objects.count()  # El 'all()' esta implícito por defecto.
     
+    #Número de visita en esta vista, se cuenta como una variable de sisión
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+    
+    
     # Renderiza la plantilla HTML index.html con los datos en la variable contexto
     return render(
         request,
         'index.html',
-        context={'num_films':num_films,'num_instances':num_instances,'num_directores':num_directores},
+        context={'num_films':num_films,'num_instances':num_instances,
+                 'num_directores':num_directores,
+                 'num_visits':num_visits},
     )
     
 from django.views import generic

@@ -32,8 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
+    'django.contrib.auth', #Incluye los modelos predeterminados
+    'django.contrib.contenttypes', #incluye los sistemas predeterminados
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -55,9 +55,10 @@ ROOT_URLCONF = 'filmspatia.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'templates')
-            ],
+#         'DIRS': [
+#             os.path.join(BASE_DIR, 'templates'),
+#             ./templates],
+        'DIRS': ['./templates', os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,3 +124,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/catalogo/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "catalogo/static/catalogo/media")
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/'

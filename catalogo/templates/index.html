@@ -13,5 +13,6 @@
     <li><strong>Copies:</strong> {{ num_instances }}</li>
     <li><strong>Directores:</strong> {{ num_directores }}</li>
   </ul>
-
+  
+<p>Han visitado esta página {{ num_visits }}{% if num_visits == 1 %} vez {% else %} veces{% endif %}.</p>
 {% endblock %}

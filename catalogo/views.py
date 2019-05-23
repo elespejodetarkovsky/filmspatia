@@ -26,13 +26,17 @@ def index(request):
 from django.views import generic
 
 class FilmListView(generic.ListView):
+    print("Hola Lista director")
     model = Film
     
 class FilmDetailView(generic.DetailView):
     model = Film
     
-# class DirectoresListView(generic.ListView):
-#     model = Director
-# 
-# class DirectoresDetail(generic.detail):
-#     model = Director
+class DirectorListView(generic.ListView):
+    model = Director
+    print("Hola Lista director")
+    
+class DirectorDetailView(generic.DetailView):
+    model = Director
+    
+    print("Hola detalle director")

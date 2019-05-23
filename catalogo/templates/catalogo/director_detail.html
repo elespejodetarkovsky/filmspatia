@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Title: {{ director.first_name }} {{ director.last_name }}</h1>
 
-  <p><strong>Fecha Nacimiento:</strong> <a href="">{{ director.date_of_birth }}</a></p> <!-- author detail link not yet defined -->
-  <p><strong>Fecha Fallecimiento:</strong>{{ director.date_of_death }}</p>  
+<h1>Author: {{ director }} </h1>
+<p>{{director.date_of_birth}} - {% if director.date_of_death %}{{director.date_of_death}}{% endif %}</p>
 
+<div style="margin-left:20px;margin-top:20px">
+<h4>Películas</h4>
+
+<dl>
+{% for film in director.film_set.all %}
+  <dt><a href="{% url 'film-detail' film.pk %}">{{film}}</a></dt>
+{% endfor %}
+</dl>
+
+</div>
 {% endblock %}

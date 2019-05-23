@@ -39,9 +39,6 @@ class Film(models.Model):
     
     cartel_img = models.ImageField(upload_to="ImgFilm")
     
-    linkImg = models.URLField(null= True, blank = True)
-    
-    print(cartel_img, "  ", linkImg)
     
     def __str__(self):
         """
@@ -101,11 +98,11 @@ class Persona(models.Model):
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField(null=True, blank=True)
     
-    def get_absolute_url(self):
-        """
-        Retorna la url para acceder a una instancia particular de un autor.
-        """
-        return reverse('author-detail', args=[str(self.id)])
+#     def get_absolute_url(self):
+#         """
+#         Retorna la url para acceder a una instancia particular de un autor.
+#         """
+#         return reverse('persona-detail', args=[str(self.id)])
     
 
     def __str__(self):
@@ -121,6 +118,12 @@ class Director(Persona):
     """
     date_of_death = models.DateField('Año muerte', null=True, blank=True)
     image = models.ImageField(upload_to="ImgDirectores")
+    
+    def get_absolute_url(self):
+        """
+        Retorna la url para acceder a una instancia particular de un autor.
+        """
+        return reverse('director-detail', args=[str(self.id)])
     
 class Usuario(Persona):
     """

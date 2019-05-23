@@ -7,6 +7,7 @@ from django.conf.urls import url
 
 from . import views
 
+print("Hola Flavia")
 
 urlpatterns = [
 #     url('', views.index, name='index'),

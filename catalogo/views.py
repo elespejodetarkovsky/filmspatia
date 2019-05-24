@@ -12,8 +12,6 @@ def index(request):
     # Genera contadores de algunos de los objetos principales
     num_films=Film.objects.all().count()
     num_instances=FilmInstance.objects.all().count()
-    # Libros disponibles (status = 'a')
-    #num_instances_available=BookInstance.objects.filter(status__exact='a').count()
     num_directores = Director.objects.count()  # El 'all()' esta implícito por defecto.
     
     #Número de visita en esta vista, se cuenta como una variable de sisión
@@ -48,14 +46,20 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class prestamosByUserListView(LoginRequiredMixin,generic.ListView):
     """
-    Generic class-based view listing books on loan to current user. 
+    Generic class-based view listing films on loan to current user. 
     """
-    print("Usuario registrado")
     model = FilmInstance
     template_name ='catalogo/filminstance_list_films_user.html'
     paginate_by = 10
     
     def get_queryset(self):
         return FilmInstance.objects.filter(prestado_a=self.request.user)
-    
+
+
+
+from .forms import FilmInstanceForm
+
+def film_new(request):
+    form = FilmInstanceForm
+    return render(request, 'catalogo/film_edit.html', {'form': form})
     

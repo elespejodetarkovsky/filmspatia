@@ -76,20 +76,7 @@ class FilmInstance(models.Model):
     #usuario = models.ForeignKey('Usuario', on_delete=models.SET_NULL, null=True)
     fechaPedido = models.DateField(null=True, blank=True)
     prestado_a = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-#     LOAN_STATUS = (
-#         ('m', 'Maintenance'),
-#         ('o', 'On loan'),
-#         ('a', 'Available'),
-#         ('r', 'Reserved'),
-#     )
 
-    #status = models.CharField(max_length=1, choices=LOAN_STATUS, blank=True, default='m', help_text='Disponibilidad del libro')
-
-#     @property
-#     def is_overdue(self):
-#         if self.due_back and date.today() > self.due_back:
-#             return True
-#         return False
     
     class Meta:
         ordering = ["prestado_a"]
@@ -130,7 +117,7 @@ class Director(Persona):
     
     def get_absolute_url(self):
         """
-        Retorna la url para acceder a una instancia particular de un autor.
+        Retorna la url para acceder a una instancia particular de un director.
         """
         return reverse('director-detail', args=[str(self.id)])
     

@@ -1,13 +1,12 @@
 '''
 Created on 21 may. 2019
 
-@author: sebas
+@author: sebastian turone
 '''
 from django.conf.urls import url
 
 from . import views
 
-print("Hola Flavia")
 
 urlpatterns = [
 #     url('', views.index, name='index'),
@@ -24,4 +23,9 @@ urlpatterns = [
 
 urlpatterns += [   
     url(r'^misfilms/$', views.prestamosByUserListView.as_view(), name='mis-films'),
+]
+
+
+urlpatterns += [   
+    url(r'^film/new/$', views.film_new, name='filminstanceform'),
 ]

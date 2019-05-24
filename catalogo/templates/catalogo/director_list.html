@@ -8,7 +8,6 @@
 
       {% for director in director_list %}
       <li>
-     	{{ director.get_absolute_url }}
         <a href="{{ director.get_absolute_url }}">{{ director.first_name }}</a> ({{director.last_name}})
       </li>
       {% endfor %}

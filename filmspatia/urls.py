@@ -17,20 +17,19 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-]
-
-
 # Use include() to add paths from the catalog application 
 from django.urls import include
+
+urlpatterns = [
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
+    path('admin/', admin.site.urls),
+]
 
 urlpatterns += [
     path('catalogo/', include('catalogo.urls')),
 ]
 
-#Add URL maps to redirect the base URL to our application
+#El flujo URL será dirigido hacia /catalogo/
 from django.views.generic import RedirectView
 urlpatterns += [
     path('', RedirectView.as_view(url='/catalogo/', permanent=True)),
@@ -42,9 +41,8 @@ from django.conf.urls.static import static
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-#Add Django site authentication urls (for login, logout, password management)
+#Redirige hacia el acceso de usuario
 
 urlpatterns += [
     url(r'^accounts/', include('django.contrib.auth.urls')),
 ]
-

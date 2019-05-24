@@ -27,7 +27,9 @@
           <li><a href="{% url 'directores' %}">Lista Directores</a></li>
           {% if user.is_authenticated %}
      		<li>Conectado: {{ user.get_username }}</li>
-     		<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
+     		<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+     		<li><a href="{% url 'filminstanceform' %}">Ingrese sus películas</a></li>
+     		<li><a href="{% url 'mis-films' %}">ver tus películas</a></li> 
    		  {% else %}
             <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
           {% endif %} 

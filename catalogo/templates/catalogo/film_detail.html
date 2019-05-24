@@ -4,11 +4,11 @@
 {% load static %}
   <h1>Title: {{ film.title }}</h1>
 	
-  <p><strong>Author:</strong> <a href="{% url 'director-detail' film.director.pk %}">{{ film.director }}</a></p>
-  <p><strong>Lenguaje:</strong> {{ film.lengua }}</p>
+  <p><strong>Director:</strong> <a href="{% url 'director-detail' film.director.pk %}">{{ film.director }}</a></p>
+  <p><strong>Lengua:</strong> {{ film.lengua }}</p>
             <div class="col-lg-3 col-md-4 offset-lg-1">
                 <img src="{% static film.cartel_img.url %}" alt="My image">
             </div>
-  <p><strong>Genero:</strong> {% for genero in film.genero.all %} {{ genero }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>  
+  <p><strong>Género:</strong> {% for genero in film.genero.all %} {{ genero }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>  
 
 {% endblock %}

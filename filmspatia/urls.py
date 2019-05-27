@@ -19,7 +19,7 @@ from django.conf.urls import url
 
 # Use include() to add paths from the catalog application 
 from django.urls import include
-
+print("hola")
 urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
